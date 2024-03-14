@@ -76,13 +76,14 @@ const App = () => {
           
           const person = Busqueda(persons, newName)
           const personChange = {name: person[0].name, phone: newPhone}
-          
-          if(person === undefined){       
-            personService.get(person.id)
+          //  console.log(person[0].id)
+          if(person !== undefined){       
+            personService.get(person[0].id)
             .then(response => {
+              // console.log(response.data)
               if(response.data){
                 
-                personService.update(person.id, personChange)
+                personService.put(person[0].id, personChange)
                 .then(response => {
                   setPersons(persons.map(p => p.id !== person.id ? p :  response.data))
                   setNotification(`Update phone of ${response.data.name}`)
@@ -91,7 +92,7 @@ const App = () => {
                   }, 3000);
                 })
                 .catch (error => {
-                  console.error("error dentro del update"+error)   
+                  console.error("error dentro del update xxx"+error)   
                   
                   setPersons(persons.map(p => p.id !== person.id ? p :  response.data))
                   setNotification(`Update phone of ${response.data.name}`)
@@ -102,7 +103,6 @@ const App = () => {
               }
               else {
                 console.error("the person does not exist")
-
                 setPersons(persons.map(p => p.id !== person.id ? p :  response.data))
                   setNotification(`Update phone of ${response.data.name}`)
                   setTimeout(() => {

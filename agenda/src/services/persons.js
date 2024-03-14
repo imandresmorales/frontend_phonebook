@@ -17,8 +17,8 @@ const eliminar = (id) => {
    return axios.delete(`${baseUrl}/${id}`)
 }
 
-const update = (id, newObject) => {
+const put = (id, newObject) => {
     return axios.put(`${baseUrl}/${id}`, newObject)
 }
 
-export default {getAll, create, eliminar, update, get}
+export default {getAll, create, eliminar, put, get}
