@@ -140,7 +140,11 @@ const App = () => {
               })
               .catch (error => {
                 console.log(error)
-                console.log("error en create")
+                // console.log("error en create")
+                setErrorMessage(`Person validation failed name: Path 'name' ('${newName}') is shorted than the minimum allowed length (3)`  )
+                setTimeout(() => {
+                  setErrorMessage('')
+                }, 3000); 
               })
           }
         
